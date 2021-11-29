@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require "dependagrab/cli"
+
+Dependagrab::CLI.start
