@@ -36,8 +36,8 @@ module Dependagrab
       end
 
       repo = ARGV.shift
-      _, options[:owner], options[:repo] = repo.split /([\w-]+)\/([\w-]+)$/
-      if  options[:owner].nil? || options[:repo].nil?
+      _, options[:owner], options[:repo] = repo.split /([\w_-]+)\/([\w._-]+)$/
+      if options[:owner].nil? || options[:repo].nil?
         STDERR.puts "Invalid REPO format"
         exit 1
       end
