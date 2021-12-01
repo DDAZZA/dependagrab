@@ -1,5 +1,3 @@
-require './lib/dependagrab/gh_api'
-
 module Dependagrab
   class GithubClient
 

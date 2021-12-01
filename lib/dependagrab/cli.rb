@@ -2,9 +2,6 @@ require 'getoptlong'
 require 'dependagrab'
 
 module Dependagrab
-  require 'dependagrab/console_writer'
-  require 'dependagrab/file_writer'
-
   class CLI
     def self.start
       opts = GetoptLong.new(
@@ -12,7 +9,6 @@ module Dependagrab
         [ '--version', '-v', GetoptLong::NO_ARGUMENT ],
         [ '--output', '-o', GetoptLong::REQUIRED_ARGUMENT ],
       )
-
 
       options = {}
 

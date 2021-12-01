@@ -4,7 +4,7 @@ require "graphql/client/http"
 module Dependagrab
   module GHAPI
     GRAPHQL_API = "https://api.github.com/graphql"
-    SCHEMA_PATH = "static/gh_schema.json"
+    SCHEMA_PATH = File.join(File.expand_path('../../', File.dirname(__FILE__)), "static/gh_schema.json")
 
     # Configure GraphQL endpoint using the basic HTTP network adapter.
     HTTP = GraphQL::Client::HTTP.new(GRAPHQL_API) do
