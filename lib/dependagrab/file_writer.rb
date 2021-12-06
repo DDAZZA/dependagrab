@@ -44,6 +44,8 @@ module Dependagrab
     # Converts an alert into a ThreadFix finding format
     #
     def parse_threadfix_finding(alert)
+      cwe = alert[:cwe][4..] if alert[:cwe]
+
       {
         nativeId: alert[:id],
         severity: alert[:severity].gsub("MODERATE", "MEDIUM"),
@@ -62,7 +64,7 @@ module Dependagrab
         mappings: [
           {
             mappingType: "CWE",
-            value: alert[:cwe][4..],
+            value: cwe,
           }
         ]
       }

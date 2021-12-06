@@ -56,7 +56,8 @@ module Dependagrab
           puts "#{result[:alerts].count} dependency warnings written to '#{options.fetch(:output)}'"
         rescue => e
           STDERR.puts "Failed to write file '#{options.fetch(:output)}'"
-          STDERR.puts e.message
+          STDERR.puts "#{e.message} (set DEBUG=true for detailed backtrace)"
+          STDERR.puts e.backtrace if ENV['DEBUG']
           exit 1
         end
       else
