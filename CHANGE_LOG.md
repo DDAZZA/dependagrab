@@ -1,3 +1,7 @@
+# V0.1.6
+Handle interrupt and exceptions output nicer
+Change source name in json output to dependabot
+
 # V0.1.5
 Fix when there is no CWE present
 

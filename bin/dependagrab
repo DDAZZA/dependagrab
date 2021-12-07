@@ -1,4 +1,11 @@
 #!/usr/bin/env ruby
 require "dependagrab/cli"
 
-Dependagrab::CLI.start
+begin
+  Dependagrab::CLI.start
+rescue SignalException => e
+  # exit
+rescue Exception => e
+  STDERR.puts "Error: Something went wrong (set DEBUG=true for detailed backtrace)"
+  STDERR.puts e.backtrace if ENV['DEBUG']
+end

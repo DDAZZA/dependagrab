@@ -35,7 +35,7 @@ module Dependagrab
         id: SecureRandom.uuid,
         created: Time.now.strftime('%Y-%m-%dT%H:%M:%SZ'),
         exported: Time.now.strftime('%Y-%m-%dT%H:%M:%SZ'),
-        source: "AppSec Team",
+        source: "dependagrab",
         collectionType: "DEPENDENCY",
         findings: [],
       }

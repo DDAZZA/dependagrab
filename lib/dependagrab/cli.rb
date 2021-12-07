@@ -26,6 +26,8 @@ module Dependagrab
           end
         end
       rescue GetoptLong::Error => e
+        STDERR.puts "Error: #{e.message}  (set DEBUG=true for detailed backtrace)"
+        puts
         print_help
         STDERR.puts e.backtrace if ENV['DEBUG']
         exit 1
@@ -46,8 +48,9 @@ module Dependagrab
       begin
         run(options)
       rescue => e
-        STDERR.puts "#{e.message} (set DEBUG=true for detailed backtrace)"
+        STDERR.puts "Error: #{e.message}  (set DEBUG=true for detailed backtrace)"
         STDERR.puts e.backtrace if ENV['DEBUG']
+        exit 1
       end
     end
 
@@ -62,7 +65,7 @@ module Dependagrab
           puts "#{result[:alerts].count} dependency warnings written to '#{options.fetch(:output)}'"
         rescue => e
           STDERR.puts "Failed to write file '#{options.fetch(:output)}'"
-          STDERR.puts "#{e.message} (set DEBUG=true for detailed backtrace)"
+          STDERR.puts "Error: #{e.message} (set DEBUG=true for detailed backtrace)"
           STDERR.puts e.backtrace if ENV['DEBUG']
           exit 1
         end
