@@ -27,6 +27,7 @@ module Dependagrab
         end
       rescue GetoptLong::Error => e
         print_help
+        STDERR.puts e.backtrace if ENV['DEBUG']
         exit 1
       end
 
@@ -42,7 +43,12 @@ module Dependagrab
         exit 1
       end
 
-      run(options)
+      begin
+        run(options)
+      rescue => e
+        STDERR.puts "#{e.message} (set DEBUG=true for detailed backtrace)"
+        STDERR.puts e.backtrace if ENV['DEBUG']
+      end
     end
 
     private
