@@ -1,3 +1,8 @@
+# V0.1.7
+Refactor to better support integration into other applications
+Change case on source name
+make cvsScore to string
+
 # V0.1.6
 Handle interrupt and exceptions output nicer
 Change source name in json output to dependabot

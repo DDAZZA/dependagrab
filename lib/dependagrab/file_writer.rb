@@ -25,6 +25,8 @@ module Dependagrab
       File.open(output_file, "w") do |f|
         f.write(scan.to_json)
       end
+
+      output_file
     end
 
 
@@ -35,7 +37,7 @@ module Dependagrab
         id: SecureRandom.uuid,
         created: Time.now.strftime('%Y-%m-%dT%H:%M:%SZ'),
         exported: Time.now.strftime('%Y-%m-%dT%H:%M:%SZ'),
-        source: "dependagrab",
+        source: "DependAGrab",
         collectionType: "DEPENDENCY",
         findings: [],
       }
@@ -49,7 +51,7 @@ module Dependagrab
         severity: alert[:severity].gsub("MODERATE", "MEDIUM"),
         nativeSeverity: alert[:severity].gsub("MODERATE", "MEDIUM"),
         summary: alert[:summary],
-        cvsScore: alert[:cvss],
+        cvsScore: alert[:cvss].to_s,
         description: alert[:description],
         dependencyDetails: {
           library: alert[:package_name],

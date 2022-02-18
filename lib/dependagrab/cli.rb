@@ -46,7 +46,8 @@ module Dependagrab
       end
 
       begin
-        run(options)
+        options.merge!(print: true)
+        Dependagrab.run(options)
       rescue => e
         STDERR.puts "Error: #{e.message}  (set DEBUG=true for detailed backtrace)"
         STDERR.puts e.backtrace if ENV['DEBUG']
@@ -55,24 +56,6 @@ module Dependagrab
     end
 
     private
-
-    def self.run(options)
-      result = Dependagrab::GithubClient.new(options).grab
-
-      if options[:output]
-        begin
-          FileWriter.new(options[:output]).write!(result[:alerts])
-          puts "#{result[:alerts].count} dependency warnings written to '#{options.fetch(:output)}'"
-        rescue => e
-          STDERR.puts "Failed to write file '#{options.fetch(:output)}'"
-          STDERR.puts "Error: #{e.message} (set DEBUG=true for detailed backtrace)"
-          STDERR.puts e.backtrace if ENV['DEBUG']
-          exit 1
-        end
-      else
-        ConsoleWriter.new.write!(result[:alerts])
-      end
-    end
 
     def self.print_usage
       puts "Usage: dependagrab <REPO> [Options]"

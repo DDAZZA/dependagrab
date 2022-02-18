@@ -5,7 +5,11 @@ begin
   Dependagrab::CLI.start
 rescue SignalException => e
   # exit
+rescue SystemExit => e
+  # exit
 rescue Exception => e
   STDERR.puts "Error: Something went wrong (set DEBUG=true for detailed backtrace)"
+
+  STDERR.puts e.message if ENV['DEBUG']
   STDERR.puts e.backtrace if ENV['DEBUG']
 end
